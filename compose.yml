@@ -1,0 +1,25 @@
+services:
+    postgres:
+        container_name: postgres_example_container
+        image: postgres:latest
+        working_dir: /app
+        restart: always
+        ports:
+            - "12432:5432"
+        environment:
+            POSTGRES_USER: example
+            POSTGRES_PASSWORD: example
+            POSTGRES_DB: example
+        volumes:
+            - "postgres_example_volume:/var/lib/postgresql/data/"
+    solr:
+        image: tchappui/solr:6.6.6
+        container_name: solr_example_container
+        ports:
+            - "12983:8983"
+        volumes:
+            - solr_example_volume:/opt/solr/solr 
+
+volumes:
+    postgres_example_volume:
+    solr_example_volume:
