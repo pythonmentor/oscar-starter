@@ -1,5 +1,5 @@
 """
-Projet: example
+Projet: OscarExample
 
 Configuration de base commune à tous les fichiers de settings.
 
@@ -10,6 +10,7 @@ https://docs.djangoproject.com/fr/5.1/ref/settings/
 
 from pathlib import Path
 
+from django.utils.translation import gettext_lazy as _
 from oscar.defaults import *  # noqa: F403, F401
 
 from config import BASE_DIR
@@ -436,3 +437,28 @@ OSCAR_ORDER_STATUS_PIPELINE = {
     ),
     "Cancelled": (),
 }
+
+OSCAR_SHOP_NAME = "PlacePython"
+
+OSCAR_SEARCH_FACETS = {
+    "fields": {
+        "product_class": {"name": _("Type"), "field": "product_class"},
+        "rating": {"name": _("Rating"), "field": "rating"},
+    },
+    "queries": {
+        "price_range": {
+            "name": _("Price range"),
+            "field": "price",
+            "queries": [
+                # This is a list of (name, query) tuples where the name will
+                # be displayed on the front-end.
+                (_("0 to 20"), "[0 TO 20]"),
+                (_("20 to 40"), "[20 TO 40]"),
+                (_("40 to 60"), "[40 TO 60]"),
+                (_("60+"), "[60 TO *]"),
+            ],
+        },
+    },
+}
+
+OSCAR_DEFAULT_CURRENCY = "EUR"
