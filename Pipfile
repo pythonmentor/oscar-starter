@@ -10,7 +10,7 @@ django-environ = "*"
 pysolr = "*"
 argon2-cffi = "*"
 wagtail = "*"
-django-oscar = {extras = ["sorl-thumbnail"], version = "*"}
+django-oscar = {extras = ["sorl-thumbnail"], version = "3.2.4"}
 pycountry = "*"
 
 [dev-packages]
